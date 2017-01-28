@@ -39,6 +39,8 @@ If information is correct, Google GeoLocation API response will be like this:
 
 You need a google API key to validate against Google. Navigate to [Google Developers Console](https://console.developers.google.com/apis) to enable GeoLocation API. Without this API key you will get an error as response.
 
+Go to https://developers.google.com/maps/documentation/geolocation/intro to learn how to create an API key.
+
 That API key has to be provided to WifiLocation class contructor like a String.
 
 Once WifiLocation object is created, you can get location calling `getGeoFromWiFi()`.
