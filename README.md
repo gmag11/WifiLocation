@@ -5,6 +5,8 @@ When location information is needed in an electronic project, we normally think 
 
 If your project needs approximate location or you are indoors, and it is connected to the Internet, you can use same mechanism to get latitude and longitude. So, you don't need additional hardware.
 
+This code uses access to Google Maps GeoLocation API. Please check [Google Policies](https://developers.google.com/maps/documentation/geolocation/policies).
+
 ##Description
 This is a library that sends Google Maps Geolocaion API a request with a list of all WiFi AP's BSSID that your microcontroller listens to. Google, then answer with location and accuracy in JSON format.
 
