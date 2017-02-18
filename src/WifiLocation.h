@@ -32,6 +32,7 @@ class WifiLocation {
 public:
     WifiLocation(String googleKey = "");
     location_t getGeoFromWiFi();
+    static String getSurroundingWiFiJson();
 
 protected:
     String _googleApiKey;
@@ -43,7 +44,6 @@ protected:
     WiFiSSLClient  _client;
 #endif
 
-    static String getSurroundingWiFiJson();
     static String MACtoString(uint8_t* macAddress);
 };
 
