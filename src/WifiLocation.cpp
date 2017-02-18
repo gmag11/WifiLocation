@@ -23,7 +23,7 @@ String WifiLocation::getSurroundingWiFiJson() {
 #ifdef DEBUG_WIFI_LOCATION
     Serial.println(String(numWifi) + " WiFi networks found");
 #endif // DEBUG_WIFI_LOCATION
-    for (int8_t i = 0; i < numWifi; i++) {//numWifi; i++) {
+    for (uint8_t i = 0; i < numWifi; i++) {//numWifi; i++) {
       //Serial.print("WiFi.BSSID(i) = ");
       //Serial.println((char *)WiFi.BSSID(i));
         wifiArray += "{\"macAddress\":\"" + MACtoString(WiFi.BSSID(i)) + "\",";
