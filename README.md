@@ -37,7 +37,7 @@ If information is correct, Google GeoLocation API response will be like this:
 }
 ```
 
-You need a google API key to validate against Google. Navigate to [Google Developers Console](https://console.developers.google.com/apis) to enable GeoLocation API. Without this API key you will get an error as response.
+You need a google API key to validate with Google API. Navigate to [Google Developers Console](https://console.developers.google.com/apis) to enable GeoLocation API. Without this API key you will get an error as response.
 
 Go to https://developers.google.com/maps/documentation/geolocation/intro to learn how to create an API key.
 
@@ -49,7 +49,7 @@ Once WifiLocation object is created, you can get location calling `getGeoFromWiF
 
 Using this code on ESP8266 platform does not require any external library.
 
-In order to compile this on MRK1000 or Arduino 101 WiFi101 library is needed. But if you try to use library from Arduino repository, a couple compile errors will appear. Reason is that WiFi101 library, as it is now, does not allow getting a list of WiFi network BSSID if it is not connected to that network.
+In order to compile this on MRK1000, WiFi101 library is needed. But if you try to use library from Arduino repository, a couple compile errors will appear. Reason is that WiFi101 library, as it is now, does not allow getting a list of WiFi network BSSID if it is not connected to that network.
 
 I've got it working by adding a couple methods in my WiFi 101 library fork. You can find it [here](https://github.com/gmag11/WiFi101/tree/scan_info).
 
@@ -57,7 +57,7 @@ I've made a [pull request](https://github.com/arduino-libraries/WiFi101/pull/142
 
 ##Code example
 
-Valid for ESP8266 and Arduino 101/MKR1000 (SAMD architecture)
+Valid for ESP8266 and MKR1000 (SAMD architecture)
 
 ```Arduino
 
