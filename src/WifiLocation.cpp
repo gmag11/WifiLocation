@@ -26,7 +26,15 @@ String WifiLocation::getSurroundingWiFiJson() {
     for (uint8_t i = 0; i < numWifi; i++) {//numWifi; i++) {
       //Serial.print("WiFi.BSSID(i) = ");
       //Serial.println((char *)WiFi.BSSID(i));
+#ifdef ARDUINO_ARCH_SAMD
+        byte bssid[6];
+
+        wifiArray += "{\"macAddress\":\"" + MACtoString(WiFi.BSSID(i,bssid)) + "\",";
+#elif defined ARDUINO_ARCH_ESP8266
         wifiArray += "{\"macAddress\":\"" + MACtoString(WiFi.BSSID(i)) + "\",";
+#else
+#error Only ESP8266 and SAMD platforms are supported
+#endif
         wifiArray += "\"signalStrength\":" + String(WiFi.RSSI(i)) + ",";
         wifiArray += "\"channel\":" + String(WiFi.channel(i)) + "}";
         if (i < (numWifi - 1)) {
