@@ -7,7 +7,11 @@
 String WifiLocation::MACtoString(uint8_t* macAddress) {
     uint8_t mac[6];
     char macStr[18] = { 0 };
+#ifdef ARDUINO_ARCH_SAMD
+    sprintf(macStr, "%02X:%02X:%02X:%02X:%02X:%02X", macAddress[5], macAddress[4], macAddress[3], macAddress[2], macAddress[1], macAddress[0]);
+#elif defined ARDUINO_ARCH_ESP8266
     sprintf(macStr, "%02X:%02X:%02X:%02X:%02X:%02X", macAddress[0], macAddress[1], macAddress[2], macAddress[3], macAddress[4], macAddress[5]);
+#endif
     return  String(macStr);
 }
 
