@@ -19,7 +19,6 @@ WifiLocation location(googleApiKey);
 
 void setup() {
     Serial.begin(115200);
-    Serial.println(ESP.getFreeHeap());
     // Connect to WPA/WPA2 network
 #ifdef ARDUINO_ARCH_ESP32
     WiFi.mode(WIFI_MODE_STA);
