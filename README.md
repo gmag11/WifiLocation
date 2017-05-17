@@ -1,13 +1,13 @@
-#WiFi Location
+# WiFi Location
 
-##Introduction
+## Introduction
 When location information is needed in an electronic project, we normally think about a GPS module. But we know that mobile phones can get approximate location listening WiFi signals, when GPS is disabled or not usable because we are inside a building.
 
 If your project needs approximate location or you are indoors, and it is connected to the Internet, you can use same mechanism to get latitude and longitude. So, you don't need additional hardware.
 
 This code uses access to Google Maps GeoLocation API. Please check [Google Policies](https://developers.google.com/maps/documentation/geolocation/policies).
 
-##Description
+## Description
 This is a library that sends Google Maps Geolocaion API a request with a list of all WiFi AP's BSSID that your microcontroller listens to. Google, then answer with location and accuracy in JSON format.
 
 Request body has this form:
@@ -51,7 +51,7 @@ Using this code on ESP8266 or ESP32 platform does not require any external libra
 
 In order to compile this on MRK1000, WiFi101 library is needed.
 
-##Code example
+## Code example
 
 Valid for ESP32, ESP8266 and MKR1000 (SAMD architecture)
 
