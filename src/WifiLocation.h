@@ -21,6 +21,7 @@
 
 const String googleApisHost = "www.googleapis.com";
 const String googleApiUrl = "/geolocation/v1/geolocate";
+#define MAX_CONNECTION_TIMEOUT 5000
 
 typedef struct {
     float lat = 0;
