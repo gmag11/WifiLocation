@@ -3,30 +3,38 @@
 #include <WiFi101.h>
 #elif defined ARDUINO_ARCH_ESP8266
 #include <ESP8266WiFi.h>
+#elif defined ARDUINO_ARCH_ESP32
+#include <WiFi.h>
 #else
 #error Wrong platform
 #endif 
 
-#include "WifiLocation.h"
+#include <WifiLocation.h>
 
-#define GOOGLE_KEY "YOUR_GOOGLE_API_KEY"
-#define SSID "SSID"
-#define PASSWD "PASSWD"
+const char* googleApiKey = "YOUR_GOOGLE_API_KEY";
+const char* ssid = "SSID";
+const char* passwd = "PASSWD";
 
-WifiLocation location(GOOGLE_KEY);
+WifiLocation location(googleApiKey);
 
 void setup() {
     Serial.begin(115200);
-
+    Serial.println(ESP.getFreeHeap());
+    // Connect to WPA/WPA2 network
+#ifdef ARDUINO_ARCH_ESP32
+    WiFi.mode(WIFI_MODE_STA);
+#endif
+#ifdef ARDUINO_ARCH_ESP8266
+    WiFi.mode(WIFI_STA);
+#endif
+    WiFi.begin(ssid, passwd);
     while (WiFi.status() != WL_CONNECTED) {
         Serial.print("Attempting to connect to WPA SSID: ");
-        Serial.println(SSID);
-        // Connect to WPA/WPA2 network:
-        WiFi.begin(SSID, PASSWD);
+        Serial.println(ssid);
         // wait 5 seconds for connection:
-        delay(5000);
         Serial.print("Status = ");
         Serial.println(WiFi.status());
+        delay(500);
     }
     location_t loc = location.getGeoFromWiFi();
 
