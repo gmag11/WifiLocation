@@ -134,12 +134,14 @@ location_t WifiLocation::getGeoFromWiFi() {
     while (millis() - timer < MAX_CONNECTION_TIMEOUT) {
         if (_client.available())
             break;
+        yield ();
     }
     while (_client.available()) {
 #ifdef DEBUG_WIFI_LOCATION
         Serial.print(".");
 #endif // DEBUG_WIFI_LOCATION
         response += _client.readString();
+        yield ();
     }
 #ifdef DEBUG_WIFI_LOCATION
     Serial.println();
