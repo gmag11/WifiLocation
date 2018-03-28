@@ -7,14 +7,14 @@
 #######################################
 
 location_t	KEYWORD1
-wifiLocation	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-wifiLocation	KEYWORD2
-location_t	KEYWORD2
+WifiLocation	KEYWORD2
+getGeoFromWiFi	KEYWORD2
+getSurroundingWiFiJson	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

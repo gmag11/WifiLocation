@@ -1,7 +1,7 @@
 {
   "name": "WifiLocation",
   "frameworks": "arduino",
-  "version": "1.2",
+  "version": "1.21",
   "keywords": "GPS, location, wifi, google",
   "platforms": ["atmelsam", "espressif32", "espressif8266"],
   "description": "Library to get geographic position (lat, lon, accuracy) listening surrounding WiFi networks (Works with ESP8266 and WiFi101 boards, including MKR1000). This library implements call to Google Maps GeoLocation API to get location from surrounding WiFi networks. It is not needed to know WiFi password of all of them. Internet connection is required. You need an API key from Google Maps. Check https://developers.google.com/maps/documentation/geolocation/intro to learn how to get your own key.",
