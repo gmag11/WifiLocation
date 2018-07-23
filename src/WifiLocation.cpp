@@ -52,6 +52,10 @@ String WifiLocation::getSurroundingWiFiJson() {
     String wifiArray = "[\n";
 
     int8_t numWifi = WiFi.scanNetworks();
+    if(numWifi > MAX_WIFI_SCAN) {
+        numWifi = MAX_WIFI_SCAN;
+    }
+
 #ifdef DEBUG_WIFI_LOCATION
     Serial.println(String(numWifi) + " WiFi networks found");
 #endif // DEBUG_WIFI_LOCATION

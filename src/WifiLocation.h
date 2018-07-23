@@ -20,9 +20,10 @@
 #include <WiFiClientSecure.h>
 #else
 #error Wrong platform
-#endif 
+#endif
 
 #define MAX_CONNECTION_TIMEOUT 5000
+#define MAX_WIFI_SCAN 127
 
 typedef struct {
     float lat = 0;
@@ -50,4 +51,3 @@ protected:
 };
 
 #endif
-
