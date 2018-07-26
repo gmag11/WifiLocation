@@ -1,1 +1,6 @@
+*.bak
+examples/googleLocation/googleLocation.sln
+**vcxproj**
+examples/googleLocation/.vs/
+examples/googleLocation/__vm/
 examples/googleLocation/Release/
