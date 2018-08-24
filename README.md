@@ -1,5 +1,8 @@
 # WiFi Location
 
+## Important notice:
+Since July 2018, Google's conditions for Maps APIs have changed. You have to assign a billing method to it so that you are able to use it. Check mor information here: https://cloud.google.com/maps-platform/pricing/
+
 ## Introduction
 When location information is needed in an electronic project, we normally think about a GPS module. But we know that mobile phones can get approximate location listening WiFi signals, when GPS is disabled or not usable because we are inside a building.
 
