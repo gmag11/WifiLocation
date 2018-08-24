@@ -7,6 +7,7 @@
 const char* googleApisHost = "www.googleapis.com";
 const char* googleApiUrl = "/geolocation/v1/geolocate";
 
+// Google CA certificate valid until 16th october 2018
 #ifdef ARDUINO_ARCH_ESP32
 const char* googleCA = "-----BEGIN CERTIFICATE-----\n" \
 "MIIDujCCAqKgAwIBAgILBAAAAAABD4Ym5g0wDQYJKoZIhvcNAQEFBQAwTDEgMB4G\n" \
