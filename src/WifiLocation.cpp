@@ -97,9 +97,11 @@ location_t WifiLocation::getGeoFromWiFi() {
 
     location_t location;
     String response = "";
+#if defined ARDUINO_ARCH_ESP8266 || defined ARDUINO_ARCH_ESP32
     //_x509 = new BearSSL::X509List (googleCA);
     //_client.setTrustAnchors (_x509);
     _client.setInsecure (); // Do not check certificate, just connect
+#endif
 #ifdef ARDUINO_ARCH_ESP32
     _client.setCACert(googleCA);
 #endif
