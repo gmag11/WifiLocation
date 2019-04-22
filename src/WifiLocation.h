@@ -43,7 +43,6 @@ protected:
     //IPAddress _googleApiIP = IPAddress(216, 58, 214, 170);
 #if defined ESP8266 || defined ARDUINO_ARCH_ESP32
     WiFiClientSecure  _client;
-    //BearSSL::X509List *_x509;
 #elif defined ARDUINO_ARCH_SAMD
     WiFiSSLClient  _client;
 #endif
