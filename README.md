@@ -54,6 +54,16 @@ Using this code on ESP8266 or ESP32 platform does not require any external libra
 
 In order to compile this on MRK1000, WiFi101 library is needed.
 
+## Limitations
+
+Notice that in order to get location this library has to scan for all surrounding wifi networks and make the request to Google APi. Don't expect to get this inmediately. All needed steps may take up to 20 seconds.
+
+So, if your project is powered with batteries, you need to drastically limit the frequency of position updates or use a GPS instead.
+
+Current version uses synchronous programming. This means that main code will be blocked while location is being resolved. As this can be quite long you need to take it into account while programming your project.
+
+In future versions, I'll try to add non blocking options. I think I can keep back compatibility so that anyone can get updated versions without using new features.
+
 ## Code example
 
 Valid for ESP32, ESP8266 and MKR1000 (SAMD architecture)
