@@ -119,6 +119,7 @@ String WifiLocation::getSurroundingWiFiJson() {
     return wifiArray;
 }
 
+#if defined ARDUINO_ARCH_ESP32 || defined ARDUINO_ARCH_ESP8266
 // Set time via NTP, as required for x.509 validation
 void setClock () {
     configTime (3600, 0, "pool.ntp.org", "time.nist.gov");
@@ -142,6 +143,7 @@ void setClock () {
     Serial.print (asctime (&timeinfo));
 #endif
 }
+#endif //ARDUINO_ARCH_ESP32 || ARDUINO_ARCH_ESP8266
 
 // Calls Google Location API to get current location using surrounding WiFi signals inf
 location_t WifiLocation::getGeoFromWiFi() {
