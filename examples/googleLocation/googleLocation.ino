@@ -1,4 +1,5 @@
 
+#include <Arduino.h>
 #ifdef ARDUINO_ARCH_SAMD
 #include <WiFi101.h>
 #elif defined ARDUINO_ARCH_ESP8266

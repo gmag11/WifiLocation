@@ -151,10 +151,14 @@ location_t WifiLocation::getGeoFromWiFi() {
     location_t location;
     String response = "";
 #if defined ARDUINO_ARCH_ESP8266 || defined ARDUINO_ARCH_ESP32
-    setClock ();
-#ifdef ARDUINO_ARCH_ESP8266
-    BearSSL::X509List cert (GlobalSignCA);
-    _client.setTrustAnchors (&cert);
+	setClock ();
+#ifdef ARDUINO_ARCH_ESP8266 
+#ifdef defined ARDUINO_ESP8266_RELEASE_2_5_0
+	BearSSL::X509List cert (GlobalSignCA);
+	_client.setTrustAnchors (&cert);
+#else
+	_client.setCACert (reinterpret_cast<const uint8_t*>(GlobalSignCA), sizeof (GlobalSignCA));
+#endif
 #endif // ARDUINO_ARCH_ESP8266
 #endif
 #ifdef ARDUINO_ARCH_ESP32
