@@ -10,6 +10,7 @@
 #endif
 
 //#define DEBUG_WIFI_LOCATION
+//#define USE_CORE_PRE_2_5_0 // Uncomment this if you are using Arduino Core < 2.5.0
 
 #ifdef ARDUINO_ARCH_SAMD
 #include <WiFi101.h>

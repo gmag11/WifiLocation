@@ -3,6 +3,7 @@
 //
 
 #include "WifiLocation.h"
+#include "time.h"
 
 const char* googleApisHost = "www.googleapis.com";
 const char* googleApiUrl = "/geolocation/v1/geolocate";
@@ -124,7 +125,7 @@ location_t WifiLocation::getGeoFromWiFi() {
 #if defined ARDUINO_ARCH_ESP8266 || defined ARDUINO_ARCH_ESP32
 	setClock ();
 #ifdef ARDUINO_ARCH_ESP8266 
-#ifdef BR_BEARSSL_H__
+#if (defined BR_BEARSSL_H__ && not defined USE_CORE_PRE_2_5_0)
 	BearSSL::X509List cert (GlobalSignCA);
 	_client.setTrustAnchors (&cert);
 #else
