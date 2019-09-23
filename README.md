@@ -57,10 +57,13 @@ Google requires using secure TLS connection in order to use GeoLocation API. `Wi
 You may get current certificate using this command (if you are using Linux)
 
 ``` bash
-openssl s_client -servername apis.google.com -showcerts -connect apis.google.com:443 < /dev/null |  awk '/^-----BEGIN CERTIFICATE-----/,/^-----END CERTIFICATE-----/{if(++m==1)n++;if(n==2)print;if(/^-----END CERTIFICATE-----/)m=0}' > GoogleCAcert.pem
+openssl s_client -servername www.googleapis.com -showcerts \
+ -connect www.googleapis.com:443 < /dev/null \
+ |  awk '/^-----BEGIN CERTIFICATE-----/,/^-----END CERTIFICATE-----/{if(++m==1)n++;if(n==2)print;if(/^-----END CERTIFICATE-----/)m=0}' \
+ > googleCA.cer
 ```
 
-Then, you can copy file content and overwrite [this part](https://github.com/gmag11/WifiLocation/blob/dev/src/WifiLocation.cpp#L14-L35) of `WifiLocation.cpp`, from line 14.
+Then, you can copy file content and overwrite [this part](https://github.com/gmag11/WifiLocation/blob/dev/src/WifiLocation.cpp#L14-L38) of `WifiLocation.cpp`, from line 14.
 
 ## Required libraries
 
