@@ -1,10 +1,10 @@
 # WiFi Location
 
 > ## Important notice:
-> Since July 2018, Google's conditions for Maps APIs have changed. You have to assign a billing method to it so that you are able to use it. Check mor information here: https://cloud.google.com/maps-platform/pricing/
+> Since July 2018, Google's conditions for Maps APIs have changed. You have to assign a billing method to it so that you are able to use it. Check more information here: https://cloud.google.com/maps-platform/pricing/. Be careful about number of request you made using this library. I am not responsible of billing cost caused by use of  Google API.
 
-> ## Plaform compatibility:
-> This will be, probably, last version compatible with SAMD microcontrollers. If you use MKR series boards from Arduino you can keep using version 1.2.5.
+> ## Platform compatibility:
+> Support of SAMD microcontrollers have been deprecated. If you use MKR series boards from Arduino you can keep using version 1.2.5.
 > Newer developments will be done for ESP8266 and ESP32.
 
 ## Introduction
@@ -15,7 +15,7 @@ If your project needs approximate location or you are indoors, and it is connect
 This code uses access to Google Maps GeoLocation API. Please check [Google Policies](https://developers.google.com/maps/documentation/geolocation/policies).
 
 ## Description
-This is a library that sends Google Maps Geolocaion API a request with a list of all WiFi AP's BSSID that your microcontroller listens to. Google, then answer with location and accuracy in JSON format.
+This is a library that sends Google Maps GeoLocaion API a request with a list of all WiFi AP's BSSID that your microcontroller listens to. Google, then answer with location and accuracy in JSON format.
 
 Request body has this form:
 
@@ -48,7 +48,7 @@ You need a google API key to validate with Google API. Navigate to [Google Devel
 
 Go to https://developers.google.com/maps/documentation/geolocation/intro to learn how to create an API key.
 
-That API key has to be provided to WifiLocation class contructor like a String.
+That API key has to be provided to WifiLocation class constructor like a String.
 
 Once WifiLocation object is created, you can get location calling `getGeoFromWiFi()`.
 
@@ -60,7 +60,7 @@ In order to compile this on MRK1000, WiFi101 library is needed.
 
 ## Limitations
 
-Notice that in order to get location this library has to scan for all surrounding wifi networks and make the request to Google APi. Don't expect to get this inmediately. All needed steps may take up to 20 seconds.
+Notice that in order to get location this library has to scan for all surrounding Wi-Fi networks and make the request to Google API. Don't expect to get this immediately. All needed steps may take up to 20 seconds.
 
 So, if your project is powered with batteries, you need to drastically limit the frequency of position updates or use a GPS instead.
 
