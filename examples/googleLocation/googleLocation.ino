@@ -40,9 +40,10 @@ void setup() {
 
     Serial.println("Location request data");
     Serial.println(location.getSurroundingWiFiJson());
-    Serial.println("Latitude: " + String(loc.lat, 7));
-    Serial.println("Longitude: " + String(loc.lon, 7));
-    Serial.println("Accuracy: " + String(loc.accuracy));
+    Serial.println ("Location: " + String (loc.lat, 7) + "," + String (loc.lon, 7));
+    //Serial.println("Longitude: " + String(loc.lon, 7));
+    Serial.println ("Accuracy: " + String (loc.accuracy));
+    Serial.println ("Result: " + location.wlStatusStr (location.getStatus ()));
 
 
 }

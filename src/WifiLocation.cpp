@@ -143,6 +143,7 @@ location_t WifiLocation::getGeoFromWiFi() {
         DEBUG_WL ("Connected to API endpoint\n");
     } else {
         DEBUG_WL ("HTTPS error\n");
+        status = WL_API_CONNECT_ERROR;
         return location;
     }
 
@@ -216,5 +217,22 @@ location_t WifiLocation::getGeoFromWiFi() {
         }
     }
 
+    status = WL_OK;
     return location;
+}
+
+String WifiLocation::wlStatusStr (int status) {
+    switch (status) {
+    case WL_API_CONNECT_ERROR:
+        return "API connection error";
+        break;
+    case WL_OK:
+        return "OK";
+        break;
+    case WL_TIME_NOT_SET:
+        return "Time not set";
+        break;            
+    default:
+        return "Unknown error";
+    }
 }

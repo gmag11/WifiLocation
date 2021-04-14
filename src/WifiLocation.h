@@ -26,6 +26,13 @@
 #define MAX_CONNECTION_TIMEOUT 5000
 #define MAX_WIFI_SCAN 127
 
+typedef enum {
+    WL_OK = 0,
+    WL_UNKNOWN = -1,
+    WL_API_CONNECT_ERROR = -2,
+    WL_TIME_NOT_SET = -3
+} wifiloc_status_t;
+
 typedef struct {
     float lat = 0;
     float lon = 0;
@@ -36,7 +43,11 @@ class WifiLocation {
 public:
     WifiLocation(String googleKey = "");
     location_t getGeoFromWiFi();
-    static String getSurroundingWiFiJson();
+    static String getSurroundingWiFiJson ();
+    static String wlStatusStr (int status);
+    wifiloc_status_t getStatus () {
+        return status;
+    }
 
 protected:
     String _googleApiKey;
@@ -47,6 +58,7 @@ protected:
 #elif defined ARDUINO_ARCH_SAMD
     WiFiSSLClient  _client;
 #endif
+    wifiloc_status_t status = WL_UNKNOWN;
 
     static String MACtoString(uint8_t* macAddress);
 };
