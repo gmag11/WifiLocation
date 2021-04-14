@@ -137,7 +137,7 @@ location_t WifiLocation::getGeoFromWiFi() {
         return location;
     }
 
-    String body = "{\"wifiAccessPoints\":" + getSurroundingWiFiJson() + "}";
+    String body = "{\"considerIP\":false,\"wifiAccessPoints\":" + getSurroundingWiFiJson () + "}";
     DEBUG_WL ("requesting URL: " + String (googleApiUrl) + "?key=" + _googleApiKey + "\n");
     String request = String("POST ") + String(googleApiUrl);
     if (_googleApiKey != "")
