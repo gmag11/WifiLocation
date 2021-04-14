@@ -16,15 +16,32 @@ const char* googleApiKey = "YOUR_GOOGLE_API_KEY";
 const char* ssid = "SSID";
 const char* passwd = "PASSWD";
 
-WifiLocation location(googleApiKey);
+WifiLocation location (googleApiKey);
+
+#if defined ESP32 || defined ESP8266
+// Set time via NTP, as required for x.509 validation
+void setClock () {
+    configTime (3600, 0, "pool.ntp.org", "time.nist.gov");
+
+    Serial.print ("Waiting for NTP time sync: ");
+    time_t now = time (nullptr);
+    while (now < 8 * 3600 * 2) {
+        delay (500);
+        Serial.print (".");
+        now = time (nullptr);
+    }
+    struct tm timeinfo;
+    gmtime_r (&now, &timeinfo);
+    Serial.print ("\n");
+    Serial.print ("Current time: ");
+    Serial.print (asctime (&timeinfo));
+}
+#endif //ESP32 || ESP8266
 
 void setup() {
     Serial.begin(115200);
     // Connect to WPA/WPA2 network
-#ifdef ARDUINO_ARCH_ESP32
-    WiFi.mode(WIFI_MODE_STA);
-#endif
-#ifdef ARDUINO_ARCH_ESP8266
+#if defined ESP32 || defined ESP8266
     WiFi.mode(WIFI_STA);
 #endif
     WiFi.begin(ssid, passwd);
@@ -36,6 +53,11 @@ void setup() {
         Serial.println(WiFi.status());
         delay(500);
     }
+    Serial.println ("Connected");
+#if defined ESP32 || defined ESP8266
+    setClock ();
+#endif
+    
     location_t loc = location.getGeoFromWiFi();
 
     Serial.println("Location request data");

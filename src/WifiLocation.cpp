@@ -97,36 +97,40 @@ String WifiLocation::getSurroundingWiFiJson() {
     return wifiArray;
 }
 
-#if defined ESP32 || defined ESP8266
-// Set time via NTP, as required for x.509 validation
-void setClock () {
-    configTime (3600, 0, "pool.ntp.org", "time.nist.gov");
+// #if defined ESP32 || defined ESP8266
+// // Set time via NTP, as required for x.509 validation
+// void setClock () {
+//     configTime (3600, 0, "pool.ntp.org", "time.nist.gov");
 
-    DEBUG_WL ("Waiting for NTP time sync: ");
-    time_t now = time (nullptr);
-    while (now < 8 * 3600 * 2) {
-        delay (500);
-        DEBUG_WL (".");
-        now = time (nullptr);
-    }
-#if DEBUG_WIFI_LOCATION
-    struct tm timeinfo;
-    gmtime_r (&now, &timeinfo);
-    DEBUG_WL ("\n");
-    DEBUG_WL ("Current time: ");
-    DEBUG_WL (asctime (&timeinfo));
-    DEBUG_WL ("\n");
-#endif
-}
-#endif //ESP32 || ESP8266
+//     DEBUG_WL ("Waiting for NTP time sync: ");
+//     time_t now = time (nullptr);
+//     while (now < 8 * 3600 * 2) {
+//         delay (500);
+//         DEBUG_WL (".");
+//         now = time (nullptr);
+//     }
+// #if DEBUG_WIFI_LOCATION
+//     struct tm timeinfo;
+//     gmtime_r (&now, &timeinfo);
+//     DEBUG_WL ("\n");
+//     DEBUG_WL ("Current time: ");
+//     DEBUG_WL (asctime (&timeinfo));
+//     DEBUG_WL ("\n");
+// #endif
+// }
+// #endif //ESP32 || ESP8266
 
 // Calls Google Location API to get current location using surrounding WiFi signals inf
 location_t WifiLocation::getGeoFromWiFi() {
 
     location_t location;
     String response = "";
-#if defined ESP8266 || defined ESP32
-	setClock ();
+ #if defined ESP8266 || defined ESP32
+// 	setClock ();
+    if (time (nullptr) < 8 * 3600 * 2) {
+        status = WL_TIME_NOT_SET;
+        return location;
+    }
 #ifdef ESP8266 
 #if (defined BR_BEARSSL_H__ && not defined USE_CORE_PRE_2_5_0)
 	BearSSL::X509List cert (GlobalSignCA);
