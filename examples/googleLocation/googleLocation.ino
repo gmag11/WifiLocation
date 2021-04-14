@@ -16,10 +16,9 @@ const char* passwd = "PASSWD";
 
 WifiLocation location (googleApiKey);
 
-#if defined ESP32 || defined ESP8266
 // Set time via NTP, as required for x.509 validation
 void setClock () {
-    configTime (3600, 0, "pool.ntp.org", "time.nist.gov");
+    configTime (0, 0, "pool.ntp.org", "time.nist.gov");
 
     Serial.print ("Waiting for NTP time sync: ");
     time_t now = time (nullptr);
