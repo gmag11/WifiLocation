@@ -160,8 +160,9 @@ location_t WifiLocation::getGeoFromWiFi() {
     request += "Host: " + String(googleApisHost) + "\r\n";
     request += "User-Agent: ESP8266\r\n";
     request += "Content-Type:application/json\r\n";
-    request += "Content-Length:" + String(body.length()) + "\r\n";
-    request += "Connection: close\r\n\r\n";
+    request += "Content-Length:" + String (body.length ()) + "\r\n";
+    request += "Connection: keep-alive\r\n\r\n";
+    //request += "Connection: close\r\n\r\n";
     request += body;
     DEBUG_WL ("request: \n" + request + "\n");
 
