@@ -14,8 +14,12 @@ const char* googleApiUrl = "/geolocation/v1/geolocate";
 #define DEBUG_WL(...)
 #endif
 
+#if !defined ESP32 && !defined ESP8266
+#error Only ESP8266 and ESP32 platforms are supported
+#endif
+
+
 // GlobalSign CA certificate valid until 15th december 2021
-#if defined ESP32 || defined ESP8266
 static const char GlobalSignCA[] PROGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
 MIIESjCCAzKgAwIBAgINAeO0mqGNiqmBJWlQuDANBgkqhkiG9w0BAQsFADBMMSAw
@@ -43,16 +47,11 @@ IRdAvKLWZu/axBVbzYmqmwkm5zLSDW5nIAJbELCQCZwMH56t2Dvqofxs6BBcCFIZ
 USpxu6x6td0V7SvJCCosirSmIatj/9dSSVDQibet8q/7UK4v4ZUN80atnZz1yg==
 -----END CERTIFICATE-----
 )EOF";
-#endif
 
 String WifiLocation::MACtoString(uint8_t* macAddress) {
     const int MAC_ADDR_SIZE = 18;
     char macStr[MAC_ADDR_SIZE] = { 0 };
-#ifdef ARDUINO_ARCH_SAMD
-    sprintf(macStr, "%02X:%02X:%02X:%02X:%02X:%02X", macAddress[5], macAddress[4], macAddress[3], macAddress[2], macAddress[1], macAddress[0]);
-#elif defined ESP8266 || defined ESP32
     snprintf (macStr, MAC_ADDR_SIZE, "%02X:%02X:%02X:%02X:%02X:%02X", macAddress[0], macAddress[1], macAddress[2], macAddress[3], macAddress[4], macAddress[5]);
-#endif
     return  String(macStr);
 }
 
@@ -74,30 +73,19 @@ String WifiLocation::getSurroundingWiFiJson() {
         //DEBUG_WL("WiFi.BSSID(i) = ");
         //DEBUG_WL((char *)WiFi.BSSID(i));
         //DEBUG_WL ("\n");
-#ifdef ARDUINO_ARCH_SAMD
-        byte bssid[6];
-
-        wifiArray += "{\"macAddress\":\"" + MACtoString(WiFi.BSSID(i,bssid)) + "\",";
-#elif defined ESP8266 || defined ESP32
         wifiArray += "{\"macAddress\":\"" + MACtoString(WiFi.BSSID(i)) + "\",";
-#else
-#error Only ESP8266 and SAMD platforms are supported
-#endif
         wifiArray += "\"signalStrength\":" + String(WiFi.RSSI(i)) + ",";
         wifiArray += "\"channel\":" + String(WiFi.channel(i)) + "}";
         if (i < (numWifi - 1)) {
             wifiArray += ",\n";
         }
     }
-#if defined ESP8266 || defined ESP32
     WiFi.scanDelete();
-#endif
     wifiArray += "]";
     DEBUG_WL ("WiFi list :\n" + wifiArray + "\n");
     return wifiArray;
 }
 
-// #if defined ESP32 || defined ESP8266
 // // Set time via NTP, as required for x.509 validation
 // void setClock () {
 //     configTime (3600, 0, "pool.ntp.org", "time.nist.gov");
@@ -118,14 +106,12 @@ String WifiLocation::getSurroundingWiFiJson() {
 //     DEBUG_WL ("\n");
 // #endif
 // }
-// #endif //ESP32 || ESP8266
 
 // Calls Google Location API to get current location using surrounding WiFi signals inf
 location_t WifiLocation::getGeoFromWiFi() {
 
     location_t location;
     String response = "";
- #if defined ESP8266 || defined ESP32
 // 	setClock ();
     if (time (nullptr) < 8 * 3600 * 2) {
         status = WL_TIME_NOT_SET;
@@ -139,7 +125,7 @@ location_t WifiLocation::getGeoFromWiFi() {
 	_client.setCACert (reinterpret_cast<const uint8_t*>(GlobalSignCA), sizeof (GlobalSignCA));
 #endif
 #endif // ESP8266
-#endif
+
 #ifdef ESP32
     _client.setCACert(GlobalSignCA);
 #endif

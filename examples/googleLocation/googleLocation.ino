@@ -1,8 +1,6 @@
 
 #include <Arduino.h>
-#ifdef ARDUINO_ARCH_SAMD
-#include <WiFi101.h>
-#elif defined ARDUINO_ARCH_ESP8266
+#if defined ARDUINO_ARCH_ESP8266
 #include <ESP8266WiFi.h>
 #elif defined ARDUINO_ARCH_ESP32
 #include <WiFi.h>
@@ -36,14 +34,11 @@ void setClock () {
     Serial.print ("Current time: ");
     Serial.print (asctime (&timeinfo));
 }
-#endif //ESP32 || ESP8266
 
 void setup() {
     Serial.begin(115200);
     // Connect to WPA/WPA2 network
-#if defined ESP32 || defined ESP8266
     WiFi.mode(WIFI_STA);
-#endif
     WiFi.begin(ssid, passwd);
     while (WiFi.status() != WL_CONNECTED) {
         Serial.print("Attempting to connect to WPA SSID: ");
@@ -54,9 +49,7 @@ void setup() {
         delay(500);
     }
     Serial.println ("Connected");
-#if defined ESP32 || defined ESP8266
     setClock ();
-#endif
     
     location_t loc = location.getGeoFromWiFi();
 
