@@ -9,14 +9,14 @@
 #include "WProgram.h"
 #endif
 
-//#define DEBUG_WIFI_LOCATION
+#define DEBUG_WIFI_LOCATION 0
 //#define USE_CORE_PRE_2_5_0 // Uncomment this if you are using Arduino Core < 2.5.0
 
 #ifdef ARDUINO_ARCH_SAMD
 #include <WiFi101.h>
-#elif defined ARDUINO_ARCH_ESP8266
+#elif defined ESP8266
 #include <ESP8266WiFi.h>
-#elif defined ARDUINO_ARCH_ESP32
+#elif defined ESP32
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
 #else
@@ -42,7 +42,7 @@ protected:
     String _googleApiKey;
     //String _googleApiFingerprint = "2c 86 e4 67 e7 b5 ca df 11 9e bd 2e 41 c2 4b e8 b6 7e cd aa";
     //IPAddress _googleApiIP = IPAddress(216, 58, 214, 170);
-#if defined ESP8266 || defined ARDUINO_ARCH_ESP32
+#if defined ESP8266 || defined ESP32
     WiFiClientSecure  _client;
 #elif defined ARDUINO_ARCH_SAMD
     WiFiSSLClient  _client;

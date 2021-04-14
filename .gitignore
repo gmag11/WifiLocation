@@ -4,3 +4,5 @@ examples/googleLocation/googleLocation.sln
 examples/googleLocation/.vs/
 examples/googleLocation/__vm/
 examples/googleLocation/Release/
+.pio/
+.vscode/
