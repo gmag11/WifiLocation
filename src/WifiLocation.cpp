@@ -61,7 +61,7 @@ WifiLocation::WifiLocation(String googleKey) {
 
 // Function to get a list of surrounding WiFi signals in JSON format to get location via Google Location API
 String WifiLocation::getSurroundingWiFiJson() {
-    String wifiArray = "[\n";
+    String wifiArray = "[";
 
     int8_t numWifi = WiFi.scanNetworks();
     if(numWifi > MAX_WIFI_SCAN) {
@@ -82,7 +82,7 @@ String WifiLocation::getSurroundingWiFiJson() {
     }
     WiFi.scanDelete();
     wifiArray += "]";
-    DEBUG_WL ("WiFi list :\n" + wifiArray + "\n");
+    DEBUG_WL ("WiFi list:\n" + wifiArray + "\n\n");
     return wifiArray;
 }
 
@@ -143,8 +143,12 @@ location_t WifiLocation::getGeoFromWiFi() {
     if (_googleApiKey != "")
         request += "?key=" + _googleApiKey;
     request += " HTTP/1.1\r\n";
-    request += "Host: " + String(googleApisHost) + "\r\n";
+    request += "Host: " + String (googleApisHost) + "\r\n";
+#ifdef ESP32
+    request += "User-Agent: ESP32\r\n";
+#else
     request += "User-Agent: ESP8266\r\n";
+#endif
     request += "Content-Type:application/json\r\n";
     request += "Content-Length:" + String (body.length ()) + "\r\n";
     request += "Connection: keep-alive\r\n\r\n";
