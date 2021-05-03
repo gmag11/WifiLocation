@@ -9,7 +9,7 @@ jobs:
       fail-fast: false
       matrix:
         example: 
-        - "examples/googleLocation.ino"
+        - "examples/googleLocation/googleLocation.ino"
 
     steps:
     - uses: actions/checkout@v2
