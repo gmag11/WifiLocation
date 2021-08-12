@@ -1,3 +1,8 @@
+[![Compile examples for ESP8266](https://github.com/gmag11/WifiLocation/actions/workflows/examples_ESP8266.yml/badge.svg)](https://github.com/gmag11/WifiLocation/actions/workflows/examples_ESP8266.yml)
+
+[![Compile examples for ESP32](https://github.com/gmag11/WifiLocation/actions/workflows/examples_ESP32.yml/badge.svg)](https://github.com/gmag11/WifiLocation/actions/workflows/examples_ESP32.yml)
+
+
 # WiFi Location
 
 > ## Important notice:
@@ -8,7 +13,7 @@
 > Newer developments will be done for ESP8266 and ESP32.
 
 > ## Google CA certificate expiration
-> Current Google CA certificate will expire on Dec 15th 2021. This is needed to validate security Google API address. I'll update it as soon Google release a new one. But keep in mind that you will need to update before that date to keep this library working
+> Current Google CA certificate will expire on Jan 28th 2028. This is needed to validate security Google API address. I'll update it as soon Google release a new one. But keep in mind that you will need to update before that date to keep this library working
 
 ## Introduction
 When location information is needed in an electronic project, we normally think about a GPS module. But we know that mobile phones can get approximate location listening WiFi signals, when GPS is disabled or not usable because we are inside a building.
