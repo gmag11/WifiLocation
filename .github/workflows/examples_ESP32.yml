@@ -1,6 +1,13 @@
 name: Compile examples for ESP32
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
