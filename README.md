@@ -1,7 +1,5 @@
 [![Compile examples for ESP8266](https://github.com/gmag11/WifiLocation/actions/workflows/examples_ESP8266.yml/badge.svg)](https://github.com/gmag11/WifiLocation/actions/workflows/examples_ESP8266.yml)
-
 [![Compile examples for ESP32](https://github.com/gmag11/WifiLocation/actions/workflows/examples_ESP32.yml/badge.svg)](https://github.com/gmag11/WifiLocation/actions/workflows/examples_ESP32.yml)
-
 
 # WiFi Location
 
