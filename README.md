@@ -4,7 +4,7 @@
 # WiFi Location
 
 > ## Important notice:
-> Since July 2018, Google's conditions for Maps APIs have changed. You have to assign a billing method to it so that you are able to use it. Check more information here: https://cloud.google.com/maps-platform/pricing/. Be careful about number of request you make using this library. There is a free tier but you know this can change in any moment. I am not responsible of billing cost caused by use of Google API.
+> Since July 2018, Google's conditions for Maps APIs have changed. **You have to assign a billing method o Google Cloud Console** to it so that you are able to use it. Check more information here: https://cloud.google.com/maps-platform/pricing/. Be careful about number of request you make using this library. There is a free tier but you know this can change in any moment. I am not responsible of billing cost caused by use of Google API.
 
 > ## Platform compatibility:
 > Support of SAMD microcontrollers have been deprecated. If you use MKR series boards from Arduino you can keep using version 1.2.5.
