@@ -15,49 +15,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      max-parallel: 1
       matrix:
-        example: 
-        - "examples/googleLocation/googleLocation.ino"
-        - "examples/BingMapsGeo/BingMapsGeo.ino"
-        - "examples/LocationAndGeo/LocationAndGeo.ino"
-
+        python-version: [3.8]
     steps:
-    - uses: actions/checkout@v2
-    - name: Cache pip
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: ${{ runner.os }}-pip-
-        
-    - name: Cache PlatformIO
-      uses: actions/cache@v2
-      with:
-        path: ~/.platformio
-        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
-        
-    - name: Set up Python
-      uses: actions/setup-python@v2
+      - uses: actions/checkout@v1
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -U platformio
+          platformio update
+      - name: Build test
+        run: |
+          mv examples/BingMapsGeo/BingMapsGeo.ino examples/BingMapsGeo/BingMapsGeo.cpp
+          mv examples/googleLocation/googleLocation.ino examples/googleLocation/googleLocation.cpp
+          mv examples/LocationAndGeo/LocationAndGeo.ino examples/LocationAndGeo/LocationAndGeo.cpp
+          pio run -e esp32-Location -e esp32-bingMapsGeo -e esp32-LocationGeo
       
-    - name: Install PlatformIO
-      run: |
-        python -m pip install --upgrade pip
-
-    - name: Upgrade PlatformIO
-      run:    
-        pip install --upgrade platformio
-        
-    - name: Install 3rd party dependecies
-      run: | 
-        pio lib -g install \
-        https://github.com/gmag11/WifiLocation.git
-
-    - name: Update all
-      run: | 
-        pio pkg update --library https://github.com/gmag11/WifiLocation.git
-        
-    - name: Run PlatformIO Examples
-      run: pio ci --board=lolin32
-      env:
-        PLATFORMIO_CI_SRC: ${{ matrix.example }}
