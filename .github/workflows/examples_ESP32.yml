@@ -43,6 +43,9 @@ jobs:
     - name: Install PlatformIO
       run: |
         python -m pip install --upgrade pip
+
+    - name: Upgrade PlatformIO
+      run:    
         pip install --upgrade platformio
         
     - name: Install 3rd party dependecies
@@ -52,7 +55,6 @@ jobs:
 
     - name: Update all
       run: | 
-        pio pkg update
         pio pkg update -g
         
     - name: Run PlatformIO Examples
