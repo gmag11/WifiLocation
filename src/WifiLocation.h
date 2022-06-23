@@ -49,8 +49,6 @@ public:
 
 protected:
     String _googleApiKey;
-    //String _googleApiFingerprint = "2c 86 e4 67 e7 b5 ca df 11 9e bd 2e 41 c2 4b e8 b6 7e cd aa";
-    //IPAddress _googleApiIP = IPAddress(216, 58, 214, 170);
     WiFiClientSecure  _client;
     wifiloc_status_t status = WL_UNKNOWN;
 

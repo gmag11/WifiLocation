@@ -148,7 +148,6 @@ location_t WifiLocation::getGeoFromWiFi() {
     request += "Content-Type:application/json\r\n";
     request += "Content-Length:" + String (body.length ()) + "\r\n";
     request += "Connection: keep-alive\r\n\r\n";
-    //request += "Connection: close\r\n\r\n";
     request += body;
     DEBUG_WL ("request: \n" + request + "\n");
 
@@ -180,9 +179,7 @@ location_t WifiLocation::getGeoFromWiFi() {
         int index = response.indexOf("\"lat\":");
         if (index != -1) {
             String tempStr = response.substring(index);
-            //Serial.println(tempStr);
             tempStr = tempStr.substring(tempStr.indexOf(":") + 1, tempStr.indexOf(","));
-            //Serial.println(tempStr);
             location.lat = tempStr.toFloat();
             DEBUG_WL ("\nLat: " + String (location.lat, 7) + "\n");
         }
