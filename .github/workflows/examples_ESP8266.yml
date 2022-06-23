@@ -53,6 +53,7 @@ jobs:
     - name: Update all
       run: | 
         pio pkg update
+        pio pkg update -g
         
     - name: Run PlatformIO Examples
       run: pio ci --board=nodemcuv2
