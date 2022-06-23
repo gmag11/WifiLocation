@@ -10,9 +10,13 @@
 
 #include <WifiLocation.h>
 
+#if __has_include("wificonfig.h")
+#include "wificonfig.h"
+#else
 const char* googleApiKey = "YOUR_GOOGLE_API_KEY";
 const char* ssid = "SSID";
 const char* passwd = "PASSWD";
+#endif
 
 WifiLocation location (googleApiKey);
 

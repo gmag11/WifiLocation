@@ -6,3 +6,4 @@ examples/googleLocation/__vm/
 examples/googleLocation/Release/
 .pio/
 .vscode/
+examples/**/wificonfig.h
