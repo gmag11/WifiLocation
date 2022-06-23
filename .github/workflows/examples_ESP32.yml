@@ -51,11 +51,11 @@ jobs:
     - name: Install 3rd party dependecies
       run: | 
         pio lib -g install \
-        https://github.com/gmag11/WifiLocation
+        https://github.com/gmag11/WifiLocation.git
 
     - name: Update all
       run: | 
-        pio pkg update -g
+        pio pkg update --library https://github.com/gmag11/WifiLocation.git
         
     - name: Run PlatformIO Examples
       run: pio ci --board=lolin32
